@@ -691,8 +691,6 @@ const makeRequest = async () => {
 
 #### Concerns
 
-Some valid skepticism you might have about using this feature
-
 - It makes asynchronous code less obvious
 
 - Relatively new
