@@ -116,6 +116,7 @@ addToArray(4, array, function (err) {
   - Use return when invoking the callback
 
 [Example1](http://callbackhell.com/)
+
 [Example2](http://51elliot.blogspot.com.es/2014/11/three-simple-rules-for-escaping.html)
 
 
@@ -146,7 +147,6 @@ addToArray(4, array).then(function () {
 })
 ```
 
-@[1-14]
 @[2-11]
 @[13]
 @[18-20]
@@ -214,13 +214,13 @@ Quick intro:
  
  * Is, like promises, non blocking.
  
- * Mmakes asynchronous code look and behave a little more like synchronous code. 
+ * Makes asynchronous code look and behave a little more like synchronous code. 
  This is where all its power lies.
 
 
 #HSLIDE
 
-#### Async/Await Syntax
+#### Async/Await Syntax (1)
 
 ```
 async function myFunction () {  
@@ -235,14 +235,62 @@ async function myFunction () {
 @[1]
 The function must be preceded by the reserved keyword "async".
 
+
+#HSLIDE
+
+#### Async/Await Syntax (2)
+
+```
+async function myFunction () {  
+  try {
+    var result = await asyncFunction()
+  } catch (err) {
+    ...
+  }
+}
+```
+
 @[1-5]
 It should include a try-catch block.
+
+
+#HSLIDE
+
+#### Async/Await Syntax (3)
+
+```
+async function myFunction () {  
+  try {
+    var result = await asyncFunction()
+  } catch (err) {
+    ...
+  }
+}
+```
 
 @[3]
 The try includes the async function preceded by reserved word "await".
 With this, we make the function wait for it to execute 
 and the result of the same is available in this case in the variable result.
 
+
+#HSLIDE
+
+#### Async/Await Syntax (4)
+
+```
+async function myFunction () {  
+  try {
+    var result = await asyncFunction()
+  } catch (err) {
+    ...
+  }
+}
+```
+
 @[4]
 If an error occurs during the execution, 
 the catch block will be executed where we will treat the error.
+
+
+
