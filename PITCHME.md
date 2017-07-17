@@ -315,7 +315,44 @@ the catch block will be executed where we will treat the error.
 #### Async/Await sample refactor
 
 ```
+function addToArray (data, array) {  
+  const promise = new Promise(function (resolve, reject) {
+    if (!array) {
+      reject(new Error('Array does not exist'));
+    }
+  
+    setTimeout(function() {
+      array.push(data)
+      resolve(array)
+    }, 1000)
+  })
 
+  return promise
+}
+
+const array = [1, 2, 3]
+
+async function processData (data, array) {  
+  try {
+    const result = await addToArray(data, array);
+    console.log(result)
+  } catch (err) {
+    return console.log(err.message);
+  }
+}
+
+processData(4, array)  
+// [1,2,3,4]
+processData(5, array)  
+// [1,2,3,4,5]
+processData(6, array)  
+// [1,2,3,4,5,6]
 ```
+
+@[1-11]
+@[18-25]
+@[18]
+@[20]
+@[27,29,31]
 
 
