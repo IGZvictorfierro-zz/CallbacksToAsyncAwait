@@ -69,6 +69,13 @@ console.log(array)
 
 #### Callbacks PROBLEM 
 
+![Logo](callbacks.jpg)
+
+
+#HSLIDE
+
+### Callback Hell o Pyramid of Doom
+
 ```
 var array = [1,2,3]
 
@@ -89,7 +96,6 @@ addToArray(4, array, function (err) {
 @[3,5,7,9]
 @[10]
 
-## Callback Hell o Pyramid of Doom
 
 #HSLIDE
 
