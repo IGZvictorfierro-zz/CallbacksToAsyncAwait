@@ -69,7 +69,7 @@ console.log(array)
 
 #### Callbacks PROBLEM 
 
-![Logo](callbacks.jpg)
+![Logo](callbacks.png)
 
 
 #HSLIDE
@@ -95,6 +95,11 @@ addToArray(4, array, function (err) {
 
 @[3,5,7,9]
 @[10]
+
+
+#HSLIDE
+
+![Logo](callbackhell.png)
 
 
 #HSLIDE
