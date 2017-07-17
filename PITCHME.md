@@ -6,7 +6,7 @@
 
 * Callbacks
 * Promises (ES6 - ES2015)
-* Async/Await
+* Async/Await (ES7 - ES2016)
 
 
 #HSLIDE
@@ -122,7 +122,7 @@ addToArray(4, array, function (err) {
 
 #HSLIDE
 
-#### Promises (ES6)
+#### Promises
 
 ```
 function addToArray (data, array) {  
@@ -202,7 +202,7 @@ addToArray(4, array)
 
 #HSLIDE
 
-#### Async/Await (ES7)
+#### Async/Await
 
 Quick intro:
 
