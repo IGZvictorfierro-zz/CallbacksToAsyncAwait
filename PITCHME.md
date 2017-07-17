@@ -5,7 +5,7 @@
 #### Ways to control Asynchrony in JS
 
 * Callbacks
-* Promises (ES6)
+* Promises (ES6 - ES2015)
 * Async/Await
 
 
@@ -106,16 +106,96 @@ addToArray(4, array, function (err) {
 
 ### Three Simple Rules for Escaping Callback Hell
 
-* use named functions for callbacks
-* nest functions when you need to capture (enclose) variable scope
-* use return when invoking the callback
+1. Keep your code shallow
+  - Use named functions for callbacks
+  
+2. Modularize
+  - Nest functions when you need to capture (enclose) variable scope
+  
+3. Handle every single error
+  - Use return when invoking the callback
 
-[Example](http://51elliot.blogspot.com.es/2014/11/three-simple-rules-for-escaping.html)
+[Example1](http://callbackhell.com/)
+[Example2](http://51elliot.blogspot.com.es/2014/11/three-simple-rules-for-escaping.html)
 
 
 #HSLIDE
 
 #### Promises (ES6)
+
+```
+function addToArray (data, array) {  
+  const promise = new Promise(function (resolve, reject) {
+    if (!array) {
+      reject(new Error('Array does not exist'))
+    }
+  
+    setTimeout(function() {
+      array.push(data)
+      resolve(array)
+    }, 1000)
+  })
+
+  return promise
+}
+
+const array = [1, 2, 3] 
+
+addToArray(4, array).then(function () {  
+  console.log(array)
+})
+```
+
+@[1-14]
+@[2-11]
+@[13]
+@[18-20]
+
+
+#HSLIDE
+
+### Callback Hell Solution - Nested Promises
+
+```
+const array = [1, 2, 3]  
+
+addToArray(4, array)  
+  .then(function() { return addToArray(5, array) })
+  .then(function() { return addToArray(6, array) })
+  .then(function() { return addToArray(7, array) })
+  .then(function () {
+    console.log(array)
+  })
+
+// (4 seg. de delay)-> [1,2,3,4,5,6,7] 
+```
+
+@[3-9]
+@[11]
+
+
+#HSLIDE
+
+### Promises errors
+
+```
+const array = ''  
+addToArray(4, array)  
+  .then(...)
+  .then(...)
+  .then(...)
+  .catch(err => console.log(err.message))
+
+// Array does not exist
+```
+
+@[2-6]
+@[8]
+
+
+#HSLIDE
+
+#### Promises common errors
 
 
 
@@ -124,3 +204,45 @@ addToArray(4, array, function (err) {
 
 #### Async/Await (ES7)
 
+Quick intro:
+
+ * Is a new way to write asynchronous code. 
+ Previous options for asynchronous code are callbacks and promises.
+ 
+ * Is actually built on top of promises. 
+ It cannot be used with plain callbacks or node callbacks.
+ 
+ * Is, like promises, non blocking.
+ 
+ * Mmakes asynchronous code look and behave a little more like synchronous code. 
+ This is where all its power lies.
+
+
+#HSLIDE
+
+#### Async/Await Syntax
+
+```
+async function myFunction () {  
+  try {
+    var result = await asyncFunction()
+  } catch (err) {
+    ...
+  }
+}
+```
+
+@[1]
+The function must be preceded by the reserved keyword "async".
+
+@[1-5]
+It should include a try-catch block.
+
+@[3]
+The try includes the async function preceded by reserved word "await".
+With this, we make the function wait for it to execute 
+and the result of the same is available in this case in the variable result.
+
+@[4]
+If an error occurs during the execution, 
+the catch block will be executed where we will treat the error.
