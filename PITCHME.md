@@ -67,6 +67,66 @@ console.log(array)
 
 #HSLIDE
 
+#### Callbacks major example (1)
+
+```
+function doSomething(callbackStep1, callbackStep2, callbackFinish){
+    // Something here
+    callbackStep1('step 1');
+
+    // continue... something here
+    callbackStep2('step 2');
+
+    // continue... something here
+    callbackFinish('finish');
+}
+
+doSomething(
+    function(step){
+       console.log(step);
+    },
+    function(step){
+       console.log(step);
+    },
+    function(end){
+       console.log(end);
+    });
+```
+
+#HSLIDE
+
+#### Callbacks major example (2)
+
+```
+function doSomething(callbackStep1, callbackStep2, callbackFinish){
+    // Something here
+    callbackStep1('step 1');
+
+    // continue... something here
+    callbackStep2('step 2');
+
+    // continue... something here
+    callbackFinish('finish');
+}
+
+function step1(step){
+     console.log(step);
+}
+
+function step2(step){
+     console.log(step);
+}
+
+function finish(end){
+     console.log(end);
+}
+
+doSomething(step1, step2, finish);
+```
+
+
+#HSLIDE
+
 #### Callbacks PROBLEM 
 
 ![Logo](callbacks.png)
