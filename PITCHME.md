@@ -126,6 +126,10 @@ addToArray(4, array, function (err) {
 
 [Example2](http://51elliot.blogspot.com.es/2014/11/three-simple-rules-for-escaping.html)
 
+### Escaping Callback Hell (Libraries)
+
+[Async](https://www.npmjs.com/package/async)
+
 
 #HSLIDE
 
@@ -202,9 +206,11 @@ addToArray(4, array)
 
 #HSLIDE
 
-#### Promises common errors
+#### Promisify libraries
 
+[Bluebird](http://bluebirdjs.com/docs/api/promisification.html)
 
+[ES6-Promisify](https://www.npmjs.com/package/es6-promisify)
 
 
 #HSLIDE
@@ -303,5 +309,13 @@ async function myFunction () {
 If an error occurs during the execution, 
 the catch block will be executed where we will treat the error.
 
+
+#HSLIDE
+
+#### Async/Await sample refactor
+
+```
+
+```
 
 
