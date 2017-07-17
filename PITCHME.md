@@ -104,6 +104,17 @@ addToArray(4, array, function (err) {
 
 #HSLIDE
 
+### Three Simple Rules for Escaping Callback Hell
+
+* use named functions for callbacks
+* nest functions when you need to capture (enclose) variable scope
+* use return when invoking the callback
+
+[Example](http://51elliot.blogspot.com.es/2014/11/three-simple-rules-for-escaping.html)
+
+
+#HSLIDE
+
 #### Promises (ES6)
 
 
