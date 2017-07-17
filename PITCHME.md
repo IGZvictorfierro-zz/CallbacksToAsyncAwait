@@ -218,7 +218,6 @@ addToArray(4, array)
 Quick intro:
 
  * Is a new way to write asynchronous code. 
- Previous options for asynchronous code are callbacks and promises.
  
  * Is actually built on top of promises. 
  It cannot be used with plain callbacks or node callbacks.
@@ -226,7 +225,6 @@ Quick intro:
  * Is, like promises, non blocking.
  
  * Makes asynchronous code look and behave a little more like synchronous code. 
- This is where all its power lies.
 
 
 #HSLIDE
