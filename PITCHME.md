@@ -281,10 +281,14 @@ async function myFunction () {
 
 @[3]
 
-The try includes the async function preceded by reserved word "await".
+The try includes the async function preceded by the reserved keyword "await".
 With this, we make the function wait for it to execute 
 and the result of the same is available in this case in the variable result.
 
+The "await" keyword can only be used inside functions defined with "async"
+
+Any async function returns a promise implicitly, and the resolve value of the promise 
+will be whatever you return from the function.
 
 #HSLIDE
 
@@ -351,4 +355,285 @@ processData(6, array)
 @[20]
 @[27,29,31]
 
+
+#HSLIDE
+
+#### Why is Async/Await better? (1)
+
+1. Concise and clean
+  - It’s clear we saved a decent amount of code.
+  - We didn’t have to write .then, create an anonymous function to handle the response, or give a name data to a variable that we don’t need to use. 
+  - We also avoided nesting our code. 
+  
+
+#HSLIDE
+
+```
+const makeRequest = () =>
+  getJSON()
+    .then(data => {
+      console.log(data)
+      return "done"
+    })
+
+makeRequest()
+```
+
+```
+const makeRequest = async () => {
+  console.log(await getJSON())
+  return "done"
+}
+
+makeRequest()
+```
+
+* await getJSON() means that the console.log call will wait until getJSON() promise resolves and print it value.
+  
+
+#HSLIDE
+
+#### Why is Async/Await better? (2)
+  
+2. Error handling
+  - Async/await makes it finally possible to handle both synchronous and asynchronous errors with the same construct, good old try/catch.
+
+
+#HSLIDE
+
+```
+const makeRequest = () => {
+  try {
+    getJSON()
+      .then(result => {
+        // this parse may fail
+        const data = JSON.parse(result)
+        console.log(data)
+      })
+      // uncomment this block to handle asynchronous errors
+      // .catch((err) => {
+      //   console.log(err)
+      // })
+  } catch (err) {
+    console.log(err)
+  }
+}
+```
+
+
+#HSLIDE
+
+```
+const makeRequest = async () => {
+  try {
+    // this parse may fail
+    const data = JSON.parse(await getJSON())
+    console.log(data)
+  } catch (err) {
+    console.log(err)
+  }
+}
+```
+
+The catch block now will handle parsing errors.
+
+
+#HSLIDE
+
+#### Why is Async/Await better? (3)
+
+3. Conditionals
+  - Return that or get more details based on some value in the data.
+
+
+#HSLIDE
+
+```
+const makeRequest = () => {
+  return getJSON()
+    .then(data => {
+      if (!data.needsAnotherRequest) {
+        console.log(data)
+        return data
+      }
+      return makeAnotherRequest(data)
+          .then(moreData => {
+            console.log(moreData)
+            return moreData
+          })
+    })
+}
+```
+
+
+#HSLIDE
+
+```
+const makeRequest = async () => {
+  const data = await getJSON()
+  if (!data.needsAnotherRequest) {
+    console.log(data)
+    return data
+  } 
+  const moreData = await makeAnotherRequest(data);
+  console.log(moreData)
+  return moreData
+}
+```
+
+#HSLIDE
+
+#### Why is Async/Await better? (4)
+
+4. Intermediate values
+  - Nested promises.
+
+#HSLIDE
+
+```
+const makeRequest = () => {
+  return promise1()
+    .then(value1 => {
+      // do something
+      return promise2(value1)
+        .then(value2 => {
+          // do something          
+          return promise3(value1, value2)
+        })
+    })
+}
+```
+
+
+#HSLIDE
+
+```
+const makeRequest = () => {
+  return promise1()
+    .then(value1 => {
+      // do something
+      return Promise.all([value1, promise2(value1)])
+    })
+    .then(([value1, value2]) => {
+      // do something          
+      return promise3(value1, value2)
+    })
+}
+```
+
+
+#HSLIDE
+
+```
+const makeRequest = async () => {
+  const value1 = await promise1()
+  const value2 = await promise2(value1)
+  return promise3(value1, value2)
+}
+```
+
+#HSLIDE
+
+#### Why is Async/Await better? (5)
+
+5. Error stacks
+  - Chained promises with an error
+  
+  
+#HSLIDE
+
+```
+const makeRequest = () => {
+  return callAPromise()
+    .then(() => callAPromise())
+    .then(() => callAPromise())
+    .then(() => callAPromise())
+    .then(() => callAPromise())
+    .then(() => {
+      throw new Error("oops");
+    })
+}
+
+makeRequest()
+  .catch(err => {
+    console.log(err);
+    // output
+    // Error: oops at callAPromise.then.then.then.then.then (index.js:8:13)
+  })
+```
+
+
+#HSLIDE
+
+```
+const makeRequest = async () => {
+  await callAPromise()
+  await callAPromise()
+  await callAPromise()
+  await callAPromise()
+  await callAPromise()
+  throw new Error("oops");
+}
+
+makeRequest()
+  .catch(err => {
+    console.log(err);
+    // output
+    // Error: oops at makeRequest (index.js:7:9)
+  })
+```
+
+
+#HSLIDE
+
+#### Why is Async/Await better? (6)
+
+6. Debugging
+
+```
+const makeRequest = () => {
+  return callAPromise()
+    .then(() => callAPromise())
+    .then(() => callAPromise())
+    .then(() => callAPromise())
+    .then(() => callAPromise())
+    .then(() => {
+      throw new Error("oops");
+    })
+}
+```
+
+
+#HSLIDE
+
+```
+const makeRequest = async () => {
+  await callAPromise()
+  await callAPromise()
+  await callAPromise()
+  await callAPromise()
+  await callAPromise()
+  throw new Error("oops");
+}
+```
+
+
+#HSLIDE
+
+#### In Conclusion
+
+- Async/await is one of the most revolutionary features that have been added to JavaScript in the past few years. 
+
+- It makes you realize what a syntactical mess promises are, and provides an intuitive replacement.
+
+
+#HSLIDE
+
+#### Concerns
+
+Some valid skepticism you might have about using this feature
+
+- It makes asynchronous code less obvious
+
+- Relatively new
 
