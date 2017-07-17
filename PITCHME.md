@@ -107,13 +107,13 @@ addToArray(4, array, function (err) {
 ### Three Simple Rules for Escaping Callback Hell
 
 1. Keep your code shallow
-Use named functions for callbacks
+- Use named functions for callbacks
   
 2. Modularize
-Nest functions when you need to capture (enclose) variable scope
+- Nest functions when you need to capture (enclose) variable scope
   
 3. Handle every single error
-Use return when invoking the callback
+- Use return when invoking the callback
   
   
 #HSLIDE
