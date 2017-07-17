@@ -109,11 +109,18 @@ addToArray(4, array, function (err) {
 1. Keep your code shallow
   - Use named functions for callbacks
   
+  
 2. Modularize
   - Nest functions when you need to capture (enclose) variable scope
   
+  
 3. Handle every single error
   - Use return when invoking the callback
+  
+  
+#HSLIDE
+
+### Escaping Callback Hell (Examples)
 
 [Example1](http://callbackhell.com/)
 
@@ -233,6 +240,7 @@ async function myFunction () {
 ```
 
 @[1]
+
 The function must be preceded by the reserved keyword "async".
 
 
@@ -250,7 +258,8 @@ async function myFunction () {
 }
 ```
 
-@[1-5]
+@[2-6]
+
 It should include a try-catch block.
 
 
@@ -269,6 +278,7 @@ async function myFunction () {
 ```
 
 @[3]
+
 The try includes the async function preceded by reserved word "await".
 With this, we make the function wait for it to execute 
 and the result of the same is available in this case in the variable result.
@@ -289,6 +299,7 @@ async function myFunction () {
 ```
 
 @[4]
+
 If an error occurs during the execution, 
 the catch block will be executed where we will treat the error.
 
