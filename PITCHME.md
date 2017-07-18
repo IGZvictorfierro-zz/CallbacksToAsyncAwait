@@ -746,11 +746,25 @@ const makeRequest = async () => {
 }
 ```
 
+
 #HSLIDE
 
-#### Loops 
+#### In Conclusion
 
-[Loops](https://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html)
+- Async/await is one of the most revolutionary features that have been added to JavaScript in the past few years. 
+
+- It makes you realize what a syntactical mess promises are, and provides an intuitive replacement.
+
+
+#HSLIDE
+
+#### Concerns
+
+- It makes asynchronous code less obvious
+
+- Relatively new
+
+
 
 
 #HSLIDE
@@ -773,20 +787,17 @@ asyncFun().then(x => console.log(`x: ${x}`));
 
 #HSLIDE
 
-#### In Conclusion
+#### Starting with async/await (Spanish)
 
-- Async/await is one of the most revolutionary features that have been added to JavaScript in the past few years. 
+[Getting started with async function](https://developers.google.com/web/fundamentals/getting-started/primers/async-functions)
 
-- It makes you realize what a syntactical mess promises are, and provides an intuitive replacement.
 
 
 #HSLIDE
 
-#### Concerns
+#### Loops 
 
-- It makes asynchronous code less obvious
-
-- Relatively new
+[Loops](https://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html)
 
 
 
@@ -803,13 +814,6 @@ asyncFun().then(x => console.log(`x: ${x}`));
 #### Even with async/await, raw promises are still key to writing optimal concurrent javascript
 
 [Optimal concurrent javascript](https://medium.com/@bluepnume/even-with-async-await-you-probably-still-need-promises-9b259854c161)
-
-
-#HSLIDE
-
-#### Starting with async/await (Spanish)
-
-[Getting started with async function](https://developers.google.com/web/fundamentals/getting-started/primers/async-functions)
 
 
 
