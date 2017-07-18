@@ -67,7 +67,7 @@ console.log(array)
 
 #HSLIDE
 
-#### Callbacks major example (1)
+#### Callbacks example (1)
 
 ```
 function doSomething(callbackStep1, callbackStep2, callbackFinish){
@@ -95,7 +95,7 @@ doSomething(
 
 #HSLIDE
 
-#### Callbacks major example (2)
+#### Callbacks example (2)
 
 ```
 function doSomething(callbackStep1, callbackStep2, callbackFinish){
@@ -264,6 +264,59 @@ addToArray(4, array)
 
 #HSLIDE
 
+#### Parallel operations with promises
+
+### Promise.all
+
+* ES6 provides the Promise.all method which takes in an array of promises and returns a new promise. 
+* The new promise is fulfilled after all the operations have completed successfully. 
+* If any of the operations fail, the new promise is rejected.
+
+
+#HSLIDE
+
+#### Parallel operations with promises
+
+```
+var allPromise = Promise.all([ 
+  fs_readFile('file1.txt'), 
+  fs_readFile('file2.txt') 
+])
+
+allPromise.then(console.log, console.error)
+```
+
+
+#HSLIDE
+
+#### Common promises error
+
+```
+const array = ''  
+addToArray(4, array)  
+  .then(...)
+  .then(...)
+  .then(...)
+  .catch(err => {
+    return err
+  })
+```
+
+
+```
+const array = ''  
+addToArray(4, array)  
+  .then(...)
+  .then(...)
+  .then(...)
+  .catch(err => {
+    return Promise.reject(err)
+  })
+```
+
+
+#HSLIDE
+
 #### Promisify libraries
 
 [Bluebird](http://bluebirdjs.com/docs/api/promisification.html)
@@ -345,10 +398,26 @@ The try includes the async function preceded by the reserved keyword "await".
 With this, we make the function wait for it to execute 
 and the result of the same is available in this case in the variable result.
 
+
+#HSLIDE
+
+#### Async/Await Syntax (3)
+
+```
+async function myFunction () {  
+  try {
+    var result = await asyncFunction()
+  } catch (err) {
+    ...
+  }
+}
+```
+
 The "await" keyword can only be used inside functions defined with "async"
 
 Any async function returns a promise implicitly, and the resolve value of the promise 
 will be whatever you return from the function.
+
 
 #HSLIDE
 
@@ -409,7 +478,7 @@ processData(6, array)
 // [1,2,3,4,5,6]
 ```
 
-@[1-11]
+@[1-13]
 @[18-25]
 @[18]
 @[20]
@@ -420,7 +489,7 @@ processData(6, array)
 
 #### Why is Async/Await better? (1)
 
-1. Concise and clean
+Concise and clean
   - It’s clear we saved a decent amount of code.
   - We didn’t have to write .then, create an anonymous function to handle the response, or give a name data to a variable that we don’t need to use. 
   - We also avoided nesting our code. 
@@ -455,7 +524,7 @@ makeRequest()
 
 #### Why is Async/Await better? (2)
   
-2. Error handling
+Error handling
   - Async/await makes it finally possible to handle both synchronous and asynchronous errors with the same construct, good old try/catch.
 
 
@@ -502,7 +571,7 @@ The catch block now will handle parsing errors.
 
 #### Why is Async/Await better? (3)
 
-3. Conditionals
+Conditionals
   - Return that or get more details based on some value in the data.
 
 
@@ -545,7 +614,7 @@ const makeRequest = async () => {
 
 #### Why is Async/Await better? (4)
 
-4. Intermediate values
+Intermediate values
   - Nested promises.
 
 #HSLIDE
@@ -596,7 +665,7 @@ const makeRequest = async () => {
 
 #### Why is Async/Await better? (5)
 
-5. Error stacks
+Error stacks
   - Chained promises with an error
   
   
@@ -648,7 +717,7 @@ makeRequest()
 
 #### Why is Async/Await better? (6)
 
-6. Debugging
+Debugging
 
 ```
 const makeRequest = () => {
@@ -680,6 +749,25 @@ const makeRequest = async () => {
 
 #HSLIDE
 
+#### Combine promises and async/await example
+
+
+```
+async function asyncFun () {
+  var value = await Promise
+    .resolve(1)
+    .then(x => x * 3)
+    .then(x => x + 5)
+    .then(x => x / 2);
+  return value;
+}
+asyncFun().then(x => console.log(`x: ${x}`));
+// <- 'x: 4'
+```
+
+
+#HSLIDE
+
 #### In Conclusion
 
 - Async/await is one of the most revolutionary features that have been added to JavaScript in the past few years. 
@@ -694,4 +782,26 @@ const makeRequest = async () => {
 - It makes asynchronous code less obvious
 
 - Relatively new
+
+
+
+#HSLIDE
+
+#### Even with async/await, raw promises are still key to writing optimal concurrent javascript
+
+[Promise all](https://medium.com/@bluepnume/even-with-async-await-you-probably-still-need-promises-9b259854c161)
+
+
+#HSLIDE
+
+#### Starting woth async/await (Spanish)
+
+[Getting started](https://developers.google.com/web/fundamentals/getting-started/primers/async-functions)
+
+
+#HSLIDE
+
+#### Tips for using async functions
+
+[Tips](http://2ality.com/2016/10/async-function-tips.html)
 
