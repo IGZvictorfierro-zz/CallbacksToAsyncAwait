@@ -746,11 +746,16 @@ const makeRequest = async () => {
 }
 ```
 
+#HSLIDE
+
+#### Loops 
+
+[Loops](https://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html)
+
 
 #HSLIDE
 
 #### Combine promises and async/await example
-
 
 ```
 async function asyncFun () {
