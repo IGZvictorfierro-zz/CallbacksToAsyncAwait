@@ -787,16 +787,25 @@ asyncFun().then(x => console.log(`x: ${x}`));
 
 #HSLIDE
 
-#### Even with async/await, raw promises are still key to writing optimal concurrent javascript
+#### Recreate Promise.all with async/await
 
-[Promise all](https://medium.com/@bluepnume/even-with-async-await-you-probably-still-need-promises-9b259854c161)
+[Promise all](https://gist.github.com/indiesquidge/5960274889e17102b5130e8bd2ce9002)
+
 
 
 #HSLIDE
 
-#### Starting woth async/await (Spanish)
+#### Even with async/await, raw promises are still key to writing optimal concurrent javascript
 
-[Getting started](https://developers.google.com/web/fundamentals/getting-started/primers/async-functions)
+[Optimal concurrent javascript](https://medium.com/@bluepnume/even-with-async-await-you-probably-still-need-promises-9b259854c161)
+
+
+#HSLIDE
+
+#### Starting with async/await (Spanish)
+
+[Getting started with async function](https://developers.google.com/web/fundamentals/getting-started/primers/async-functions)
+
 
 
 #HSLIDE
